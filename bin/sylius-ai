@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MARKETPLACE="Sylius/sylius-ai-dev-skills"
+PLUGIN="sylius-dev@sylius-ai-dev-skills"
+
+usage() {
+    cat <<EOF
+Usage: sylius-ai <command>
+
+Commands:
+    init             Run 'mate init' then 'mate discover' to bootstrap Mate
+    install-skills   Register marketplace and install the sylius-dev plugin
+    help             Show this message
+EOF
+}
+
+require_bin() {
+    local bin="$1"
+    if ! command -v "${bin}" >/dev/null 2>&1; then
+        echo "Error: '${bin}' not found in PATH." >&2
+        exit 1
+    fi
+}
+
+cmd_init() {
+    local mate
+    if [[ -x "./vendor/bin/mate" ]]; then
+        mate="./vendor/bin/mate"
+    else
+        require_bin mate
+        mate="mate"
+    fi
+
+    echo "Running: ${mate} init"
+    "${mate}" init
+
+    echo "Running: ${mate} discover"
+    "${mate}" discover
+
+    if [[ -t 0 ]]; then
+        read -r -p "Install Claude Code skills now? [Y/n] " reply
+        case "${reply:-Y}" in
+            [Nn]*) echo "Skipped. Run 'sylius-ai install-skills' later." ;;
+            *)     cmd_install_skills ;;
+        esac
+    fi
+}
+
+cmd_install_skills() {
+    require_bin claude
+
+    echo "Registering marketplace: ${MARKETPLACE}"
+    claude plugin marketplace add "${MARKETPLACE}"
+
+    echo "Installing plugin: ${PLUGIN}"
+    claude plugin install "${PLUGIN}"
+
+    echo "Done. Restart Claude Code to load the plugin."
+}
+
+case "${1:-help}" in
+    init)
+        cmd_init
+        ;;
+    install-skills)
+        cmd_install_skills
+        ;;
+    help|-h|--help)
+        usage
+        ;;
+    *)
+        echo "Unknown command: $1" >&2
+        usage
+        exit 1
+        ;;
+esac

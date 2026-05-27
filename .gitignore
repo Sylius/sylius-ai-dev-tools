@@ -1,0 +1,5 @@
+/vendor/
+/composer.lock
+/mate/
+/AGENTS.md
+.DS_Store

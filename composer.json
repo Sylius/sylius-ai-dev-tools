@@ -1,0 +1,21 @@
+{
+    "name": "sylius/sylius-ai-dev-tools",
+    "description": "Dev-only AI tooling pack for Sylius: bundles Mate extension and related dev tools for use in Sylius Standard projects.",
+    "license": "MIT",
+    "type": "library",
+    "keywords": ["sylius", "ai", "devtools", "mate", "dev"],
+    "require": {
+        "php": ">=8.2",
+        "sylius/sylius-mate-extension": "@dev",
+        "symfony/ai-symfony-mate-extension": "dev-main"
+    },
+    "bin": ["bin/sylius-ai"],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "symfony/ai-mate-composer-plugin": true
+        }
+    }
+}
