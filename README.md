@@ -14,14 +14,14 @@
 
 ## About
 
-`sylius/sylius-ai-dev-tools` bootstraps the AI developer experience for [**Sylius**](https://sylius.com) 2.x projects. One install wires up the MCP server and Claude Code skills you need to work on Sylius features with an AI assistant, in both new and existing Sylius projects.
+`sylius/sylius-ai-dev-tools` pins the AI developer experience for [**Sylius**](https://sylius.com) 2.x projects to a known-compatible set of versions, so you don't have to work out which `sylius-mate-extension` and `symfony/ai-symfony-mate-extension` releases fit together.
 
 The pack is **dev-only**. Install it as a `require-dev` dependency; never ship it to production.
 
-What it installs:
+What it pins:
 
 - **MCP**: the [Sylius Mate Extension](https://github.com/Sylius/sylius-mate-extension), exposing the running Sylius kernel (resources, hooks, grids, routes, Twig helpers, mailer, …) to AI assistants over the Model Context Protocol.
-- **Skills**: the [`Sylius/sylius-ai-dev-skills`](https://github.com/Sylius/sylius-ai-dev-skills) Claude Code marketplace, with skills for building Sylius features idiomatically (resources, admin CRUD, grids, hooks, emails, fixtures, …).
+- **Skills**: `sylius-mate-extension` also ships the `sylius-dev` skill (via Mate's native skill distribution), with guidance for building Sylius features idiomatically (resources, admin CRUD, grids, hooks, emails, fixtures, …).
 
 ## Installation
 
@@ -31,13 +31,21 @@ Add the pack as a dev dependency of your Sylius project:
 composer require --dev sylius/sylius-ai-dev-tools
 ```
 
-Then bootstrap everything with a single command:
+Then bootstrap Mate:
 
 ```bash
-vendor/bin/sylius-ai init
+vendor/bin/mate init
+vendor/bin/mate discover
 ```
 
-`sylius-ai init` runs Mate init + discover, then prompts to register the Sylius skills marketplace and install the skills via `claude plugin`. Restart Claude Code afterwards.
+`discover` symlinks the `sylius-dev` skill (and any other Mate-distributed skills) into `.agents/skills/` and `.claude/skills/` as `mate-*`. Since those symlinks point into the gitignored `vendor/`, add them to your project's `.gitignore`:
+
+```gitignore
+.agents/skills/mate-*
+.claude/skills/mate-*
+```
+
+Restart Claude Code afterwards to load the skill.
 
 ## Bug Tracking
 
