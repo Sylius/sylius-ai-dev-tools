@@ -9,7 +9,6 @@
         "sylius/sylius-mate-extension": "^0.3",
         "symfony/ai-symfony-mate-extension": "^0.12"
     },
-    "bin": ["bin/sylius-ai"],
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
