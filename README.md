@@ -20,7 +20,7 @@ The pack is **dev-only**. Install it as a `require-dev` dependency; never ship i
 
 What it pins:
 
-- **MCP**: the [Sylius Mate Extension](https://github.com/Sylius/sylius-mate-extension), exposing the running Sylius kernel (resources, hooks, grids, routes, Twig helpers, mailer, …) to AI assistants over the Model Context Protocol.
+- **Tools**: the [Sylius Mate Extension](https://github.com/Sylius/sylius-mate-extension), exposing the running Sylius kernel (resources, hooks, grids, routes, Twig helpers, mailer, …) to AI coding agents as Mate CLI tools (`vendor/bin/mate tools:call …`).
 - **Skills**: `sylius-mate-extension` also ships the `sylius-dev` skill (via Mate's native skill distribution), with guidance for building Sylius features idiomatically (resources, admin CRUD, grids, hooks, emails, fixtures, …).
 
 ## Installation
@@ -38,7 +38,7 @@ vendor/bin/mate init
 vendor/bin/mate discover
 ```
 
-`discover` symlinks the `sylius-dev` skill (and any other Mate-distributed skills) into `.agents/skills/` and `.claude/skills/` as `mate-*`. Since those symlinks point into the gitignored `vendor/`, add them to your project's `.gitignore`:
+`discover` installs the `sylius-dev` skill (and any other Mate-distributed skills) into `.agents/skills/` as `mate-*` copies, with mirror symlinks in `.claude/skills/`. Both folders are generated and rebuilt by Mate (`skills:install`), so add them to your project's `.gitignore`:
 
 ```gitignore
 .agents/skills/mate-*
