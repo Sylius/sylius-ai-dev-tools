@@ -25,6 +25,12 @@ What it pins:
 
 ## Installation
 
+Allow Mate's Composer plugin first, so extension discovery runs automatically after every `composer install`/`update` (with `--no-interaction`, e.g. in CI or Docker builds, Composer silently blocks unknown plugins instead of asking):
+
+```bash
+composer config allow-plugins.symfony/ai-mate-composer-plugin true
+```
+
 Add the pack as a dev dependency of your Sylius project:
 
 ```bash
@@ -36,7 +42,10 @@ Then bootstrap Mate:
 ```bash
 vendor/bin/mate init
 vendor/bin/mate discover
+composer dump-autoload
 ```
+
+`init` creates `mate/` (config, generated agent instructions, `mate/src/` for your own tools) and registers the `Mate\` autoloader in `composer.json`, which is why `composer dump-autoload` is needed afterwards. Both commands also maintain a managed block in `AGENTS.md` and `CLAUDE.md` telling your coding agent how to call Mate.
 
 `discover` installs the `sylius-dev` skill (and any other Mate-distributed skills) into `.agents/skills/` as `mate-*` copies, with mirror symlinks in `.claude/skills/`. Both folders are generated and rebuilt by Mate (`skills:install`), so add them to your project's `.gitignore`:
 
