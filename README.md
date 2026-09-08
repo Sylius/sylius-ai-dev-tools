@@ -25,20 +25,16 @@ What it pins:
 
 ## Installation
 
-Add the pack as a dev dependency of your Sylius project:
+Add the pack as a dev dependency of your Sylius project, then bootstrap Mate:
 
 ```bash
 composer require --dev sylius/sylius-ai-dev-tools
-```
-
-Then bootstrap Mate:
-
-```bash
 vendor/bin/mate init
+composer dump-autoload
 vendor/bin/mate discover
 ```
 
-`discover` installs the `sylius-dev` skill (and any other Mate-distributed skills) into `.agents/skills/` as `mate-*` copies, with mirror symlinks in `.claude/skills/`. Both folders are generated and rebuilt by Mate (`skills:install`), so add them to your project's `.gitignore`:
+`init` scaffolds `mate/` and registers the `Mate\` autoloader in `composer.json` (hence the `dump-autoload`). `discover` registers the installed extensions, writes a managed block into `AGENTS.md` and `CLAUDE.md` telling your coding agent how to call Mate, and installs the `sylius-dev` skill (plus any other Mate-distributed skills) into `.agents/skills/` as `mate-*` copies, with mirror symlinks in `.claude/skills/`. Both skill folders are generated and rebuilt by Mate, so add them to your project's `.gitignore`:
 
 ```gitignore
 .agents/skills/mate-*
