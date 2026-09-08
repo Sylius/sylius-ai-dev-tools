@@ -41,11 +41,11 @@ Then bootstrap Mate:
 
 ```bash
 vendor/bin/mate init
-vendor/bin/mate discover
 composer dump-autoload
+vendor/bin/mate discover
 ```
 
-`init` creates `mate/` (config, generated agent instructions, `mate/src/` for your own tools) and registers the `Mate\` autoloader in `composer.json`, which is why `composer dump-autoload` is needed afterwards. Both commands also maintain a managed block in `AGENTS.md` and `CLAUDE.md` telling your coding agent how to call Mate.
+`init` creates `mate/` (config, generated agent instructions, `mate/src/` for your own tools) and registers the `Mate\` autoloader in `composer.json`; run `composer dump-autoload` right after it, since anything you put in `mate/src/` is silently invisible to Mate until the autoloader is dumped. Both Mate commands also maintain a managed block in `AGENTS.md` and `CLAUDE.md` telling your coding agent how to call Mate.
 
 `discover` installs the `sylius-dev` skill (and any other Mate-distributed skills) into `.agents/skills/` as `mate-*` copies, with mirror symlinks in `.claude/skills/`. Both folders are generated and rebuilt by Mate (`skills:install`), so add them to your project's `.gitignore`:
 
