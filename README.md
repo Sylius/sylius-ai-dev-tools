@@ -25,17 +25,13 @@ What it pins:
 
 ## Installation
 
-Allow Mate's Composer plugin first, so extension discovery runs automatically after every `composer install`/`update` (with `--no-interaction`, e.g. in CI or Docker builds, Composer silently blocks unknown plugins instead of asking):
-
-```bash
-composer config allow-plugins.symfony/ai-mate-composer-plugin true
-```
-
 Add the pack as a dev dependency of your Sylius project:
 
 ```bash
 composer require --dev sylius/sylius-ai-dev-tools
 ```
+
+Composer will ask whether to trust `symfony/ai-mate-composer-plugin`; answer yes, it is what re-runs extension discovery after every `composer install`/`update`. In non-interactive installs (CI, Docker builds) Composer silently blocks unknown plugins instead of asking, so allow it up front there with `composer config allow-plugins.symfony/ai-mate-composer-plugin true`.
 
 Then bootstrap Mate:
 
