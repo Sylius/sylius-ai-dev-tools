@@ -6,8 +6,8 @@
     "keywords": ["sylius", "ai", "devtools", "mate", "dev"],
     "require": {
         "php": ">=8.2",
-        "sylius/sylius-mate-extension": "^0.7",
-        "symfony/ai-symfony-mate-extension": "^0.13"
+        "sylius/sylius-mate-extension": "^0.9",
+        "symfony/ai-symfony-mate-extension": "^0.14"
     },
     "prefer-stable": true,
     "config": {
