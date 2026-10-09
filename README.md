@@ -14,7 +14,7 @@
 
 ## About
 
-`sylius/sylius-ai-dev-tools` pins the AI developer experience for [**Sylius**](https://sylius.com) 2.x projects to a known-compatible set of versions, so you don't have to work out which `sylius-mate-extension` and `symfony/ai-symfony-mate-extension` releases fit together.
+`sylius/sylius-ai-dev-tools` pins the AI developer experience for [**Sylius**](https://sylius.com) 2.x projects to a known-compatible set of versions, so you don't have to work out which Mate extension releases fit together.
 
 The pack is **dev-only**. Install it as a `require-dev` dependency; never ship it to production.
 
@@ -22,6 +22,8 @@ What it pins:
 
 - **Tools**: the [Sylius Mate Extension](https://github.com/Sylius/sylius-mate-extension), exposing the running Sylius kernel (resources, hooks, grids, routes, Twig helpers, mailer, …) to AI coding agents as Mate CLI tools (`vendor/bin/mate tools:call …`).
 - **Skills**: `sylius-mate-extension` also ships the `sylius-dev` skill (via Mate's native skill distribution), with guidance for building Sylius features idiomatically (resources, admin CRUD, grids, hooks, emails, fixtures, …).
+- **Symfony tools**: the [Symfony Mate Extension](https://github.com/symfony/ai-symfony-mate-extension) (container, routing, profiler, dotenv, …) and the [Monolog Mate Extension](https://github.com/symfony/ai-monolog-mate-extension) (log inspection), so the agent can see how the application is actually wired and what it logged.
+- **Verification tools**: the [PHPUnit](https://github.com/MatesOfMate/phpunit-extension) and [PHPStan](https://github.com/MatesOfMate/phpstan-extension) Mate extensions, so the agent can run tests and static analysis on the change it just made and read structured results instead of raw console output.
 
 ## Installation
 

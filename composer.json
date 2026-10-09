@@ -7,7 +7,10 @@
     "require": {
         "php": ">=8.2",
         "sylius/sylius-mate-extension": "^0.9",
-        "symfony/ai-symfony-mate-extension": "^0.14"
+        "symfony/ai-symfony-mate-extension": "^0.14",
+        "symfony/ai-monolog-mate-extension": "^0.14",
+        "matesofmate/phpunit-extension": "^0.7.1",
+        "matesofmate/phpstan-extension": "^0.7.1"
     },
     "prefer-stable": true,
     "config": {
