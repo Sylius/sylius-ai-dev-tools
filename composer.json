@@ -6,9 +6,9 @@
     "keywords": ["sylius", "ai", "devtools", "mate", "dev"],
     "require": {
         "php": ">=8.2",
-        "sylius/sylius-mate-extension": "^0.9",
-        "symfony/ai-symfony-mate-extension": "^0.14",
-        "symfony/ai-monolog-mate-extension": "^0.14",
+        "sylius/sylius-mate-extension": "^0.11",
+        "symfony/ai-symfony-mate-extension": "^0.14 || ^0.15 || ^1.0",
+        "symfony/ai-monolog-mate-extension": "^0.14 || ^0.15 || ^1.0",
         "matesofmate/phpunit-extension": "^0.7.1",
         "matesofmate/phpstan-extension": "^0.7.1"
     },
